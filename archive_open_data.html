@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#18342e">
+  <title>Atlas Sénégal | Données ouvertes</title>
+  <style>
+    :root{color-scheme:light;--ink:#18342e;--soft:#49635b;--paper:#f4f7f2;--white:#fff;--line:#dce5df;--green:#2a765b;--lime:#d9ef77;--coral:#df795e;--blue:#438c9b;--muted:#75867e}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.5 "Segoe UI",Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}a{color:inherit}
+    .shell{min-height:100vh;display:grid;grid-template-columns:238px minmax(0,1fr)}
+    aside{min-height:100vh;padding:25px 17px 20px;background:var(--ink);color:#f5f7ef;display:flex;flex-direction:column}
+    .brand{display:flex;align-items:center;gap:12px;padding:0 8px 30px}.mark{width:35px;height:35px;display:grid;place-items:center;background:var(--lime);color:var(--ink);font-weight:800;clip-path:polygon(50% 0,94% 24%,94% 76%,50% 100%,6% 76%,6% 24%)}
+    .brand-name{font:700 16px/1.1 Georgia,serif}.caption{margin-top:5px;color:#afc1b6;font-size:10px;text-transform:uppercase;letter-spacing:1.2px}
+    .nav-label{padding:0 10px;margin:0 0 9px;color:#91a89b;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px}.nav{display:grid;gap:5px}.nav button{border:0;border-radius:4px;padding:10px 12px;color:#ccdad1;background:transparent;text-align:left;display:flex;gap:11px;align-items:center}.nav button:hover,.nav button.active{background:#29483e;color:white}.nav-icon{width:19px;color:var(--lime);font-size:16px;text-align:center}
+    .rail-status{margin-top:auto;padding:17px 9px 0;border-top:1px solid #355248;color:#afc1b6;font-size:11px}.dot{display:inline-block;width:7px;height:7px;margin-right:7px;border-radius:50%;background:var(--lime)}
+    main{min-width:0;padding:0 36px 44px}.topbar{height:65px;display:flex;justify-content:flex-end;align-items:center;gap:15px;border-bottom:1px solid var(--line);color:var(--muted);font-size:12px}.topbar strong{color:var(--ink);font-weight:600}.content{width:min(1300px,100%);margin:auto}
+    .heading{display:flex;align-items:end;justify-content:space-between;gap:18px;padding:31px 0 23px}.eyebrow{color:var(--green);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.4px}h1{margin:5px 0 0;font:500 34px/1.1 Georgia,"Times New Roman",serif;letter-spacing:0}.subtitle{margin:8px 0 0;color:var(--muted);font-size:13px}
+    .button{border:1px solid var(--line);border-radius:4px;background:var(--white);color:var(--ink);padding:8px 12px;font-weight:650}.button:hover{border-color:var(--green)}
+    .downloads{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}.download{display:flex;min-height:75px;flex-direction:column;justify-content:center;gap:4px;padding:12px;border:1px solid var(--line);border-radius:4px;background:var(--white);text-decoration:none}.download:hover{border-color:var(--green)}.download strong{font-size:12px}.download span{color:var(--muted);font-size:10px}
+    .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}.metric{min-height:100px;padding:15px 17px;background:var(--white);border:1px solid var(--line);border-radius:4px}.metric-label{color:var(--muted);font-size:11px;font-weight:650}.metric-value{margin-top:6px;font:500 27px/1 Georgia,serif}.metric-foot{margin-top:7px;color:var(--green);font-size:11px}.metric:nth-child(3) .metric-value{color:var(--coral)}.metric:nth-child(4) .metric-value{color:var(--blue)}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:14px;margin:29px 0 12px}h2{margin:0;font:500 21px/1.2 Georgia,serif}.section-sub{margin-top:4px;color:var(--muted);font-size:12px}
+    .source-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}.source{min-height:86px;padding:12px;border:1px solid var(--line);border-radius:4px;background:var(--white)}.source-top{display:flex;justify-content:space-between;gap:6px}.source-name{font-size:12px;font-weight:700}.source-count{font:500 19px Georgia,serif}.source-state{margin-top:8px;color:var(--muted);font-size:10px}.source-state.failed{color:#a64c38}
+    .notice{margin-top:11px;padding:9px 12px;border-left:3px solid var(--coral);background:#fff2ed;color:#784b3e;font-size:11px}
+    .toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:14px 0 11px}.field{height:37px;border:1px solid var(--line);border-radius:4px;background:var(--white);color:var(--ink);padding:0 10px;outline:none}.field:focus{border-color:var(--green);box-shadow:0 0 0 3px #2a765b1a}.search{flex:1 1 240px;min-width:180px}.select{min-width:180px}.result-count{margin-left:auto;color:var(--muted);font-size:12px}
+    .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:4px;background:var(--white)}table{width:100%;border-collapse:collapse;text-align:left}th{position:sticky;top:0;background:#edf2ed;color:#60736a;font-size:10px;text-transform:uppercase;letter-spacing:.6px}th,td{padding:10px 12px;border-bottom:1px solid #e8eee9;vertical-align:middle}td{max-width:320px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}tbody tr:hover{background:#f6f9f5}tbody tr:last-child td{border-bottom:0}.tag{display:inline-block;padding:3px 7px;border-radius:3px;background:#e8f1ec;color:#316149;font-size:10px;font-weight:700}.table-link{color:var(--green);text-underline-offset:2px}.empty{padding:26px;text-align:center;color:var(--muted)}
+    .pagination{display:flex;justify-content:space-between;align-items:center;padding:10px 2px;color:var(--muted);font-size:11px}.pager{display:flex;gap:5px}.pager button{border:1px solid var(--line);border-radius:4px;background:white;padding:5px 9px;color:var(--ink)}.pager button:disabled{opacity:.4;cursor:default}
+    .gallery{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px}.photo{overflow:hidden;border:1px solid var(--line);border-radius:4px;background:var(--white)}.photo img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#e5ece6}.photo-info{padding:9px 10px 11px}.photo-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;font-weight:700}.photo-credit{margin-top:4px;color:var(--muted);font-size:10px}.photo-credit a{color:var(--green)}
+    .view{display:none}.view.active{display:block;animation:fade .25s ease both}.error{max-width:650px;margin:28px auto;padding:16px;border:1px solid #e8b3a5;border-radius:4px;background:#fff2ed;color:#784b3e} [hidden]{display:none!important}@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:1050px){.shell{grid-template-columns:205px minmax(0,1fr)}main{padding-right:22px;padding-left:22px}.source-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.gallery{grid-template-columns:repeat(3,minmax(0,1fr))}.downloads{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:700px){.shell{display:block}aside{min-height:auto;padding:11px 13px}.brand{padding:0 2px 9px}.nav-label,.rail-status{display:none}.nav{display:flex;gap:4px;overflow:auto}.nav button{flex:0 0 auto;padding:8px 9px;font-size:12px}.nav-icon{width:auto}main{padding:0 14px 28px}.topbar{height:43px}.heading{align-items:start;padding:22px 0 17px}h1{font-size:29px}.heading .button{padding:7px 9px;font-size:11px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.metric{min-height:88px;padding:11px}.metric-value{font-size:24px}.source-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.downloads{gap:7px}.select{flex:1 1 150px}.result-count{flex-basis:100%;margin-left:0}td{max-width:210px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <div class="brand"><div class="mark" aria-hidden="true">S</div><div><div class="brand-name">Atlas Sénégal</div><div class="caption">Données ouvertes</div></div></div>
+      <p class="nav-label">Explorer</p>
+      <nav class="nav" aria-label="Navigation principale">
+        <button class="active" data-view="overview"><span class="nav-icon">⌂</span>Vue d’ensemble</button>
+        <button data-view="records"><span class="nav-icon">▤</span>Enregistrements</button>
+        <button data-view="images"><span class="nav-icon">▧</span>Images</button>
+      </nav>
+      <div class="rail-status"><span class="dot"></span><span id="status">Chargement…</span></div>
+    </aside>
+    <main>
+      <div class="topbar"><span>Zone étudiée</span><strong>Sénégal</strong><span>·</span><span id="updated">Données locales</span></div>
+      <div class="content">
+        <header class="heading"><div><div class="eyebrow">Archive · collecte ouverte</div><h1>Données du Sénégal</h1><p class="subtitle">Ancienne collecte OpenStreetMap, Wikidata, Wikipedia, GDELT et Wikimedia Commons.</p></div><a class="button" href="index.html">Projet principal · 5 acteurs</a><button class="button" id="reload">↻ &nbsp;Actualiser</button></header>
+        <div id="load-error" class="error" hidden></div>
+        <section class="view active" id="view-overview" aria-label="Vue d’ensemble">
+          <div class="metrics">
+            <div class="metric"><div class="metric-label">Enregistrements</div><div class="metric-value" id="metric-total">—</div><div class="metric-foot">lignes collectées</div></div>
+            <div class="metric"><div class="metric-label">Sources actives</div><div class="metric-value" id="metric-sources">—</div><div class="metric-foot">avec des résultats</div></div>
+            <div class="metric"><div class="metric-label">Images disponibles</div><div class="metric-value" id="metric-images">—</div><div class="metric-foot">Wikimedia Commons</div></div>
+            <div class="metric"><div class="metric-label">Lieux géolocalisés</div><div class="metric-value" id="metric-places">—</div><div class="metric-foot">coordonnées disponibles</div></div>
+          </div>
+          <div class="section-head"><div><h2>Fichiers du devoir</h2><div class="section-sub">Télécharger les données, le notebook et le rapport détaillé</div></div></div>
+          <div class="downloads">
+            <a class="download" href="notebooks/analyse_open_data_archive.ipynb" download><strong>Notebook d’analyse</strong><span>Jupyter · téléchargement local</span></a>
+            <a class="download" href="data/archive_open_data/collecte_senegal.csv" download><strong>Données CSV</strong><span>Tableur · 281 enregistrements</span></a>
+            <a class="download" href="data/archive_open_data/collecte_senegal.json" download><strong>Données JSON</strong><span>Format structuré complet</span></a>
+            <a class="download" href="docs/rapport_collecte_ouverte.html"><strong>Rapport d’archive</strong><span>Sources, acteurs et limites</span></a>
+          </div>
+          <div class="section-head"><div><h2>Sources de collecte</h2><div class="section-sub">État et volume des dernières données enregistrées</div></div></div>
+          <div class="source-grid" id="source-grid"></div><div class="notice" id="source-notice" hidden></div>
+          <div class="section-head"><div><h2>Dernières images</h2><div class="section-sub">Fichiers locaux avec attribution et licence</div></div><button class="button" data-goto="images">Voir la galerie</button></div>
+          <div class="gallery" id="preview-gallery"></div>
+        </section>
+        <section class="view" id="view-records" aria-label="Enregistrements">
+          <div class="section-head"><div><h2>Enregistrements collectés</h2><div class="section-sub">Recherche dans les champs disponibles · export CSV du résultat filtré</div></div><button class="button" id="export">↓ &nbsp;Exporter CSV</button></div>
+          <div class="toolbar"><input class="field search" id="search" type="search" placeholder="Rechercher un nom, lieu, article…" aria-label="Rechercher dans les données"><select class="field select" id="source-filter" aria-label="Filtrer par source"><option value="">Toutes les sources</option></select><span class="result-count" id="result-count"></span></div>
+          <div class="table-wrap"><table><thead><tr><th>Élément</th><th>Source</th><th>Type / catégorie</th><th>Position</th><th>Référence</th></tr></thead><tbody id="records-body"></tbody></table></div>
+          <div class="pagination"><span id="page-label"></span><div class="pager"><button id="previous">← Précédent</button><button id="next">Suivant →</button></div></div>
+        </section>
+        <section class="view" id="view-images" aria-label="Galerie d’images"><div class="section-head"><div><h2>Images du Sénégal</h2><div class="section-sub">Wikimedia Commons · consulter la page source pour les conditions de réutilisation</div></div></div><div class="gallery" id="full-gallery"></div></section>
+      </div>
+    </main>
+  </div>
+  <script>
+    const DATA_URL = "data/archive_open_data/collecte_senegal.json";
+    const MANIFEST_URL = "data/archive_open_data/manifest_images.csv";
+    const PAGE_SIZE = 12;
+    let sourceErrors = {};
+    let records = [], images = [], filtered = [], page = 1;
+    const text = (value) => value == null ? "" : String(value);
+    const escapeHtml = (value) => text(value).replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[char]));
+    const basename = (path) => text(path).split(/[\\/]/).pop();
+    const imagePath = (row) => `assets/images/${encodeURIComponent(basename(row.local_path))}`;
+
+    function parseCsv(value) {
+      const rows = []; let row = [], cell = "", quoted = false;
+      for (let i = 0; i < value.length; i += 1) {
+        const char = value[i];
+        if (quoted && char === '"' && value[i + 1] === '"') { cell += '"'; i += 1; }
+        else if (char === '"') quoted = !quoted;
+        else if (char === "," && !quoted) { row.push(cell); cell = ""; }
+        else if ((char === "\n" || char === "\r") && !quoted) { if (char === "\r" && value[i + 1] === "\n") i += 1; row.push(cell); if (row.some(Boolean)) rows.push(row); row = []; cell = ""; }
+        else cell += char;
+      }
+      if (cell || row.length) { row.push(cell); rows.push(row); }
+      const [headers, ...data] = rows;
+      return data.map((values) => Object.fromEntries(headers.map((key, index) => [key.replace(/^\uFEFF/, ""), values[index] || ""])));
+    }
+    function labelFor(row) { return row.name || row.label || row.title || row.file_name || row.category || row.item_url || row.source_url || "Élément sans titre"; }
+    function recordType(row) { return row.category || row.item_type || (row.file_name ? "Image" : row.page_id ? "Article" : "—"); }
+    function position(row) { if (row.latitude != null && row.longitude != null) return `${Number(row.latitude).toFixed(4)}, ${Number(row.longitude).toFixed(4)}`; return row.coordinates || "—"; }
+    function renderSources() {
+      const counts = records.reduce((groups, row) => ((groups[row.source] ||= []).push(row), groups), {});
+      const names = [...new Set([...Object.keys(counts), ...Object.keys(sourceErrors)])];
+      document.querySelector("#source-grid").innerHTML = names.map((name) => { const count = counts[name]?.length || 0, failed = Boolean(sourceErrors[name]), state = failed && count ? `Données conservées; API indisponible: ${sourceErrors[name]}` : failed ? sourceErrors[name] : count ? "Données disponibles" : "Aucun résultat"; return `<div class="source"><div class="source-top"><span class="source-name">${escapeHtml(name)}</span><span class="source-count">${count}</span></div><div class="source-state ${failed ? "failed" : ""}">${escapeHtml(state)}</div></div>`; }).join("");
+      const notice = document.querySelector("#source-notice"), failures = Object.entries(sourceErrors);
+      if (failures.length) { notice.hidden = false; notice.textContent = failures.map(([name, error]) => `${name} : ${error}.`).join(" "); }
+      document.querySelector("#source-filter").innerHTML = '<option value="">Toutes les sources</option>' + [...new Set(records.map((row) => row.source))].sort().map((name) => `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`).join("");
+    }
+    function renderGallery(target, subset) {
+      document.querySelector(target).innerHTML = subset.length ? subset.map((image) => { const title = image.file_name?.replace(/^File:/, "") || "Image sans titre", credit = image.artist || "Auteur non précisé", license = image.license || "Licence non précisée"; return `<article class="photo"><a href="${escapeHtml(image.source_url)}" target="_blank" rel="noreferrer"><img loading="lazy" src="${imagePath(image)}" alt="${escapeHtml(title)}"></a><div class="photo-info"><div class="photo-title" title="${escapeHtml(title)}">${escapeHtml(title)}</div><div class="photo-credit">${escapeHtml(credit)} · <a href="${escapeHtml(image.license_url || image.source_url)}" target="_blank" rel="noreferrer">${escapeHtml(license)}</a></div></div></article>`; }).join("") : '<div class="empty">Aucune image disponible.</div>';
+    }
+    function renderTable() {
+      const query = document.querySelector("#search").value.trim().toLocaleLowerCase("fr"), source = document.querySelector("#source-filter").value;
+      filtered = records.filter((row) => (!source || row.source === source) && (!query || JSON.stringify(row).toLocaleLowerCase("fr").includes(query)));
+      const pages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE)); page = Math.min(page, pages); const start = (page - 1) * PAGE_SIZE;
+      const slice = filtered.slice(start, start + PAGE_SIZE);
+      document.querySelector("#records-body").innerHTML = slice.length ? slice.map((row) => { const ref = row.source_url || row.item_url || row.wikipedia_url; return `<tr><td title="${escapeHtml(labelFor(row))}">${escapeHtml(labelFor(row))}</td><td><span class="tag">${escapeHtml(row.source)}</span></td><td>${escapeHtml(recordType(row))}</td><td>${escapeHtml(position(row))}</td><td>${ref ? `<a class="table-link" href="${escapeHtml(ref)}" target="_blank" rel="noreferrer">Ouvrir ↗</a>` : "—"}</td></tr>`; }).join("") : '<tr><td colspan="5" class="empty">Aucun résultat pour cette recherche.</td></tr>';
+      document.querySelector("#result-count").textContent = `${filtered.length.toLocaleString("fr-FR")} résultat${filtered.length > 1 ? "s" : ""}`;
+      document.querySelector("#page-label").textContent = filtered.length ? `Page ${page} sur ${pages}` : "Aucune ligne";
+      document.querySelector("#previous").disabled = page <= 1; document.querySelector("#next").disabled = page >= pages;
+    }
+    function updateView(view) { document.querySelectorAll(".view").forEach((section) => section.classList.toggle("active", section.id === `view-${view}`)); document.querySelectorAll(".nav button").forEach((button) => button.classList.toggle("active", button.dataset.view === view)); if (view === "records") renderTable(); }
+    async function loadData() {
+      const [dataResponse, manifestResponse, reportResponse] = await Promise.all([fetch(DATA_URL), fetch(MANIFEST_URL), fetch("data/archive_open_data/rapport_execution.json")]);
+      if (!dataResponse.ok || !manifestResponse.ok) throw new Error("Exports introuvables. Lancez l’application depuis le dossier Devoir_Data_collection.");
+      records = await dataResponse.json(); images = parseCsv(await manifestResponse.text());
+      sourceErrors = reportResponse.ok ? (await reportResponse.json()).erreurs || {} : {};
+      const activeSources = new Set(records.map((row) => row.source));
+      document.querySelector("#metric-total").textContent = records.length.toLocaleString("fr-FR");
+      document.querySelector("#metric-sources").textContent = activeSources.size;
+      document.querySelector("#metric-images").textContent = images.length;
+      document.querySelector("#metric-places").textContent = records.filter((row) => row.latitude != null && row.longitude != null || row.coordinates).length.toLocaleString("fr-FR");
+      document.querySelector("#status").textContent = `${records.length.toLocaleString("fr-FR")} lignes chargées`;
+      document.querySelector("#updated").textContent = `${activeSources.size} sources · exports locaux`;
+      renderSources(); renderGallery("#preview-gallery", images.slice(0, 5)); renderGallery("#full-gallery", images); renderTable();
+      document.querySelector("#load-error").hidden = true;
+    }
+    function showError(error) {
+      const box = document.querySelector("#load-error");
+      const networkError = /NetworkError|Failed to fetch/i.test(error.message || "");
+      if (location.protocol === "file:") {
+        box.textContent = "Cette page a été ouverte directement comme fichier. Ouvrez http://127.0.0.1:8765/ avec le serveur local démarré dans le dossier du devoir.";
+      } else if (networkError) {
+        box.textContent = "Le serveur local ne répond pas. Depuis le dossier Devoir_Data_collection, démarrez-le avec `python -m http.server 8765 --bind 127.0.0.1`, puis rechargez cette page.";
+      } else {
+        box.textContent = error.message || String(error);
+      }
+      box.hidden = false;
+      document.querySelector("#status").textContent = "Exports non chargés";
+    }
+    document.querySelectorAll(".nav button").forEach((button) => button.addEventListener("click", () => updateView(button.dataset.view)));
+    document.querySelectorAll("[data-goto]").forEach((button) => button.addEventListener("click", () => updateView(button.dataset.goto)));
+    document.querySelector("#search").addEventListener("input", () => { page = 1; renderTable(); });
+    document.querySelector("#source-filter").addEventListener("change", () => { page = 1; renderTable(); });
+    document.querySelector("#previous").addEventListener("click", () => { page -= 1; renderTable(); });
+    document.querySelector("#next").addEventListener("click", () => { page += 1; renderTable(); });
+    document.querySelector("#reload").addEventListener("click", () => loadData().catch(showError));
+    document.querySelector("#export").addEventListener("click", () => { const columns = [...new Set(filtered.flatMap((row) => Object.keys(row)))], quote = (value) => `"${text(value).replace(/"/g, '""')}"`, csv = [columns.map(quote).join(","), ...filtered.map((row) => columns.map((key) => quote(row[key])).join(","))].join("\r\n"), link = document.createElement("a"); link.href = URL.createObjectURL(new Blob(["\ufeff", csv], { type: "text/csv;charset=utf-8" })); link.download = "collecte_senegal_filtre.csv"; link.click(); URL.revokeObjectURL(link.href); });
+    loadData().catch(showError);
+  </script>
+</body>
+</html>

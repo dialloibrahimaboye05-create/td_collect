@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#18342e">
+  <meta name="description" content="Projet de collecte de 50 observations par acteur sur le Sénégal.">
+  <title>Data Collection Sénégal — 5 acteurs</title>
+  <style>
+    :root{font:15px/1.55 "Segoe UI",Arial,sans-serif;color:#18342e;background:#f4f7f2;--green:#2a765b;--line:#dce5df;--muted:#60736a;--white:#fff}
+    *{box-sizing:border-box}body{margin:0}.layout{max-width:1180px;margin:auto;padding:20px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:13px 0;border-bottom:1px solid var(--line)}.brand{font:700 18px Georgia,serif}.top a,.links a{color:var(--green)}main{padding:27px 0 55px}.eyebrow{text-transform:uppercase;letter-spacing:1px;font-size:11px;font-weight:700;color:var(--green)}h1,h2{font-family:Georgia,serif;font-weight:500;line-height:1.2}h1{font-size:clamp(30px,5vw,46px);margin:7px 0}h2{font-size:22px;margin:0 0 12px}.lead{max-width:760px;color:var(--muted)}.banner{margin:19px 0;padding:13px 15px;border-left:4px solid #df795e;background:#fff2ed;color:#784b3e}    .metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:20px 0}.metric,.card,.actor{background:var(--white);border:1px solid var(--line);border-radius:5px}.metric{padding:13px}.metric b{display:block;font:25px Georgia,serif}.metric span,.muted{color:var(--muted);font-size:12px}.actors{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}.actor{padding:13px;min-height:110px}.actor h3{margin:0 0 5px;font-size:15px}.actor .count{font:24px Georgia,serif}.actor p{margin:6px 0 0;color:var(--muted);font-size:11px}.section{margin-top:27px}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.card{padding:15px}.card h3{margin:0 0 5px;font-size:14px}.card p{margin:0;color:var(--muted);font-size:12px}.links{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.button{display:inline-block;padding:8px 11px;background:white;border:1px solid var(--line);border-radius:4px;text-decoration:none;font-size:13px}.button.primary{background:var(--green);border-color:var(--green);color:white}.button[hidden]{display:none}.capture-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}.capture{overflow:hidden;background:white;border:1px solid var(--line);border-radius:5px}.capture img{display:block;width:100%;aspect-ratio:16/10;object-fit:contain;background:#e8eee9}.capture-info{padding:10px;font-size:12px}.capture-info a{color:var(--green)}.table-wrap{overflow:auto;background:white;border:1px solid var(--line);border-radius:5px}table{width:100%;border-collapse:collapse;font-size:12px}th,td{text-align:left;padding:9px 11px;border-bottom:1px solid #e8eee9;white-space:nowrap}th{background:#edf2ed}td a{color:var(--green)}.toolbar{display:flex;gap:8px;margin:10px 0}.toolbar input{flex:1;min-width:100px;padding:8px;border:1px solid var(--line);border-radius:4px}.empty{padding:15px;color:var(--muted)}footer{padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+    @media(max-width:850px){.actors{grid-template-columns:repeat(3,minmax(0,1fr))}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.capture-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:560px){.layout{padding:13px}.actors{grid-template-columns:repeat(2,minmax(0,1fr))}.cards,.capture-grid{grid-template-columns:1fr}.metrics{gap:6px}.metric{padding:10px}.metric b{font-size:21px}.top{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <header class="top">
+      <div class="brand">Data Collection · Sénégal</div>
+      <nav class="links" aria-label="Liens du projet">
+        <a href="docs/rapport_projet.html">Rapport</a>
+        <a href="docs/slides_presentation.html">Slides</a>
+        <a href="archive_open_data.html">Archive des données ouvertes</a>
+      </nav>
+    </header>
+    <main>
+      <div class="eyebrow">Projet de collecte · données sénégalaises</div>
+      <h1>Cinq acteurs, 50 observations chacun</h1>
+      <p class="lead">Collecter, nettoyer et documenter des observations de Booking, Agoda, Threads, TripAdvisor et de l’App Store pour le Sénégal. La cible de remise est 250 observations nettoyées, réparties également entre les cinq acteurs.</p>
+      <div id="status" class="banner" role="status">La collecte Apify n’a pas encore été exécutée. Lancez le notebook avec votre jeton privé pour générer les exports.</div>
+      <div class="metrics">
+        <div class="metric"><b>5</b><span>acteurs ciblés</span></div>
+        <div class="metric"><b>50 × 5</b><span>objectif : 250 observations propres</span></div>
+        <div class="metric"><b id="actual-total">—</b><span>observations disponibles après collecte</span></div>
+      </div>
+      <section>
+        <h2>Acteurs de collecte</h2>
+        <div class="actors" id="actor-cards">
+          <article class="actor" data-actor="Booking"><h3>Booking</h3><span class="count">— / 50</span><p>Hébergements recherchés autour de Dakar</p></article>
+          <article class="actor" data-actor="Agoda"><h3>Agoda</h3><span class="count">— / 50</span><p>Hébergements recherchés autour de Dakar</p></article>
+          <article class="actor" data-actor="Threads"><h3>Threads</h3><span class="count">— / 50</span><p>Publications sur Sénégal, Dakar et Thiès</p></article>
+          <article class="actor" data-actor="TripAdvisor"><h3>TripAdvisor</h3><span class="count">— / 50</span><p>Lieux, avis et activités à Dakar</p></article>
+          <article class="actor" data-actor="AppStore"><h3>Apple App Store</h3><span class="count">— / 50</span><p>Avis Wave sur le storefront sénégalais</p></article>
+        </div>
+      </section>
+      <section class="section">
+        <h2>Livrables du devoir</h2>
+        <div class="cards">
+          <article class="card"><h3>Notebook à soumettre</h3><p>Collecte réelle, contrôle des volumes, nettoyage et bilan des valeurs manquantes.</p><div class="links"><a class="button primary" href="notebooks/collecte_5_acteurs_senegal.ipynb" download>Télécharger le notebook</a></div></article>
+          <article class="card"><h3>Rapport et soutenance</h3><p>Rôle de chacun des cinq acteurs, méthode de collecte, qualité et limites.</p><div class="links"><a class="button" href="docs/rapport_projet.html">Lire le rapport</a><a class="button" href="docs/slides_presentation.html">Ouvrir les slides (12 min)</a></div></article>
+          <article class="card"><h3>Captures et vidéo</h3><p>La consigne demande au moins dix captures authentiques et une vidéo partagée de douze minutes maximum.</p><div class="links"><a class="button" href="evidence/README.md">Liste des 10 captures</a><a class="button" href="evidence/url_video.txt">État du lien vidéo</a></div></article>
+        </div>
+        <div class="links">
+          <a class="button" id="download-csv" href="data/apify/collecte_cinq_acteurs.csv" download hidden>Télécharger CSV nettoyé</a>
+          <a class="button" id="download-json" href="data/apify/collecte_cinq_acteurs.json" download hidden>Télécharger JSON nettoyé</a>
+          <a class="button" id="download-report" href="data/apify/rapport_apify.json" download hidden>Télécharger le bilan de collecte</a>
+        </div>
+      </section>
+      <section class="section">
+        <h2>Captures des pages des acteurs</h2>
+        <p class="muted" id="capture-status">Chargement du manifeste des captures…</p>
+        <div class="capture-grid" id="capture-gallery"></div>
+      </section>
+      <section class="section">
+        <h2>Résultats nettoyés</h2>
+        <div class="toolbar"><input id="search" type="search" placeholder="Rechercher dans les observations…" aria-label="Rechercher dans les observations"><span class="muted" id="row-count">Aucune collecte chargée</span></div>
+        <div class="table-wrap"><table><thead><tr><th>Acteur</th><th>Titre / identifiant</th><th>Contenu</th><th>Note</th><th>URL source</th></tr></thead><tbody id="results"><tr><td class="empty" colspan="5">Exécutez le notebook pour générer et publier les observations.</td></tr></tbody></table></div>
+      </section>
+      <section class="section">
+        <h2>Ouvrir l’ancienne collecte séparée</h2>
+        <p class="muted">Les 281 résultats OpenStreetMap, Wikidata, Wikipedia, GDELT et Wikimedia Commons, ainsi que leurs 50 images, restent disponibles dans l’archive. Ils ne sont pas comptés parmi les cinq acteurs Apify.</p>
+        <div class="links"><a class="button" href="archive_open_data.html">Consulter le tableau de bord d’archive</a></div>
+      </section>
+    </main>
+    <footer>Projet statique · le site ne contient ni jeton Apify ni appel de collecte automatique. Attribution et conformité aux conditions des plateformes à vérifier avant toute republication.</footer>
+  </div>
+  <script>
+    const reportUrl = "data/apify/rapport_apify.json";
+    const datasetUrl = "data/apify/collecte_cinq_acteurs.json";
+    const captureManifestUrl = "evidence/captures/manifest.json";
+    const allowedActors = new Set(["Booking", "Agoda", "Threads", "TripAdvisor", "AppStore"]);
+    let rows = [];
+    const safe = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[char]));
+    const safeExternalUrl = (value) => {
+      try {
+        const url = new URL(value);
+        return url.protocol === "https:" || url.protocol === "http:" ? safe(url.href) : "";
+      } catch {
+        return "";
+      }
+    };
+    function renderRows() {
+      const query = document.querySelector("#search").value.trim().toLocaleLowerCase("fr");
+      const selected = rows.filter((row) => JSON.stringify(row).toLocaleLowerCase("fr").includes(query)).slice(0, 100);
+      document.querySelector("#row-count").textContent = `${selected.length} affichée(s) sur ${rows.length}`;
+      document.querySelector("#results").innerHTML = selected.length ? selected.map((row) => { const url = safeExternalUrl(row.url); return `<tr><td>${safe(row.actor)}</td><td>${safe(row.title || row.observation_id)}</td><td>${safe(row.content)}</td><td>${safe(row.rating)}</td><td>${url ? `<a href="${url}" target="_blank" rel="noreferrer">Ouvrir ↗</a>` : "—"}</td></tr>`; }).join("") : '<tr><td class="empty" colspan="5">Aucune observation correspondante.</td></tr>';
+    }
+    async function loadCaptures() {
+      const response = await fetch(captureManifestUrl);
+      if (!response.ok) throw new Error("Manifeste des captures introuvable.");
+      const manifest = await response.json();
+      const captures = (manifest.captures || []).filter((item) =>
+        allowedActors.has(item.actor) && /^[a-z0-9_-]+\.png$/i.test(item.file || "")
+      );
+      document.querySelector("#capture-status").textContent = `${captures.length} capture(s) publiées sur 10 demandées. Ajoutez les images réelles et leurs entrées au manifeste, puis redéployez.`;
+      document.querySelector("#capture-gallery").innerHTML = captures.length ? captures.map((item) => {
+        const source = safeExternalUrl(item.source_url);
+        const file = encodeURIComponent(item.file);
+        return `<article class="capture"><img loading="lazy" src="evidence/captures/${file}" alt="${safe(item.title || `Capture ${item.actor}`)}"><div class="capture-info"><strong>${safe(item.actor)}</strong> · ${safe(item.title || item.file)}${source ? ` · <a href="${source}" target="_blank" rel="noreferrer">Page source ↗</a>` : ""}</div></article>`;
+      }).join("") : '<p class="empty">Aucune capture n’a encore été ajoutée. Consultez la liste des dix pages à capturer.</p>';
+    }
+    async function loadProjectResults() {
+      const reportResponse = await fetch(reportUrl);
+      if (!reportResponse.ok) throw new Error("Bilan de collecte introuvable.");
+      const report = await reportResponse.json();
+      if (!report.collecte_executee) return;
+      const dataResponse = await fetch(datasetUrl);
+      if (!dataResponse.ok) throw new Error("Export JSON introuvable; relancez le notebook.");
+      rows = await dataResponse.json();
+      document.querySelector("#actual-total").textContent = report.total_nettoye ?? rows.length;
+      document.querySelectorAll(".actor").forEach((card) => {
+        const stats = report.acteurs?.[card.dataset.actor];
+        card.querySelector(".count").textContent = `${stats?.cleaned ?? 0} / 50`;
+        card.querySelector("p").textContent = stats ? `${stats.received} reçue(s) · ${stats.removed_duplicates} doublon(s) retiré(s)` : "Aucune donnée collectée";
+      });
+      const complete = Boolean(report.objectif_atteint);
+      const status = document.querySelector("#status");
+      status.textContent = complete ? "Objectif atteint : 50 observations nettoyées pour chacun des cinq acteurs." : "Collecte chargée, mais au moins un acteur n’a pas atteint 50 observations nettoyées. Vérifiez le bilan avant la remise.";
+      status.style.borderLeftColor = complete ? "#2a765b" : "#df795e";
+      ["csv", "json", "report"].forEach((kind) => { document.querySelector(`#download-${kind}`).hidden = false; });
+      renderRows();
+    }
+    document.querySelector("#search").addEventListener("input", renderRows);
+    loadProjectResults().catch((error) => { document.querySelector("#status").textContent = `Impossible de charger les exports : ${error.message}`; });
+    loadCaptures().catch((error) => { document.querySelector("#capture-status").textContent = error.message; });
+  </script>
+</body>
+</html>
